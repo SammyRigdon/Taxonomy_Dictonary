@@ -2,10 +2,6 @@ package com.company;/*
 Class for managing the connection to the database and any queries
  */
 
-/*
-Testing git push
- */
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -91,7 +87,7 @@ public class ITIS
                 kingdomID = resultSet.getString("kingdom_id");
                 hierarchyString = resultSet.getString("hierarchy_string");
 
-                // Create com.company.SearchResults object
+                // Create SearchResults object
                 SearchResults result = new SearchResults(itisSerialNumber, taxonomicName, commonName, kingdomName, kingdomID, hierarchyString,null);
                 resultsHashMap.put(index, result);
                 index++;
@@ -183,7 +179,7 @@ public class ITIS
     }
 
     // TODO Rewrite Query functions to use smaller specialized functions
-    // Get info based on com.company.ITIS SN
+    // Get info based on ITIS SN
     public Species[] itisSerialNumberSearch(String searchTerm) throws SQLException
     {
         // Queries
@@ -220,22 +216,20 @@ public class ITIS
         {
             SearchResults currentResult = resultsHashMap.get(i);
             switch(currentResult.kingdomName){
-                case "com.company.Animalia":
+                case "Animalia":
                     Animalia currentResultAnimalia = currentResult.toAnimalia();
                     animaliaHashMap.put(i, currentResultAnimalia);
                     break;
 
-                case "com.company.Archaea":
-                    //com.company.Archaea currentResultArchaea = currentResult.toArchaea();
+                case "Archaea":
+                    //Archaea currentResultArchaea = currentResult.toArchaea();
                     break;
 
-                case "com.company.Bacteria":
+                case "Bacteria":
                     break;
 
 
             }
-            Animalia currentResultAnimalia = currentResult.toAnimalia();
-            animaliaHashMap.put(i, currentResultAnimalia);
 
         }
         ObservableList<Animalia> data = FXCollections.observableArrayList();
@@ -285,7 +279,7 @@ public class ITIS
                 taxonomicName = queryResults.getString("completename");
                 commonName = queryResults.getString("vernacular_name");
 
-                // Create com.company.SearchResults object
+                // Create SearchResults object
                 SearchResults result = new SearchResults(itisSerialNumber, taxonomicName, commonName, null, null, null, null);
                 resultsHashMap.put(index, result);
                 index++;
@@ -301,7 +295,7 @@ public class ITIS
             SearchResults currentResult = resultsHashMap.get(i);
             animaliaHashMap.put(i, currentResult.toAnimalia());
             /*
-            System.out.println("com.company.ITIS Serial Number: " + currentResult.itisSerialNumber);
+            System.out.println("ITIS Serial Number: " + currentResult.itisSerialNumber);
             System.out.println("Taxonomic Name: " + currentResult.taxonomicName);
             System.out.println("Common name: " + currentResult.commonName);
              */
@@ -353,7 +347,7 @@ public class ITIS
                 taxonomicName = queryResults.getString("completename");
                 commonName = queryResults.getString("vernacular_name");
 
-                // Create com.company.SearchResults object
+                // Create SearchResults object
                 SearchResults result = new SearchResults(itisSerialNumber, taxonomicName, commonName, null, null, null, null);
                 resultsHashMap.put(index, result);
                 index++;
@@ -369,7 +363,7 @@ public class ITIS
             SearchResults currentResult = resultsHashMap.get(i);
             animaliaHashMap.put(i, currentResult.toAnimalia());
             /*
-            System.out.println("com.company.ITIS Serial Number: " + currentResult.itisSerialNumber);
+            System.out.println("ITIS Serial Number: " + currentResult.itisSerialNumber);
             System.out.println("Taxonomic Name: " + currentResult.taxonomicName);
             System.out.println("Common name: " + currentResult.commonName);
              */

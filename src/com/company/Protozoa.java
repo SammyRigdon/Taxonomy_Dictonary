@@ -1,6 +1,6 @@
 package com.company;
 
-public class Protozoa extends com.company.Species
+public class Protozoa extends Species
 {
     // TODO Protoza Implementation
 }

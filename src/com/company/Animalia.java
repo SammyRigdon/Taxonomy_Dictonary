@@ -6,7 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Animalia extends Species
 {
-    // com.company.Animalia Variables
+    // Animalia Variables
     SimpleStringProperty subkingdom = new SimpleStringProperty("Null");
     SimpleStringProperty infrakingdom = new SimpleStringProperty("Null");
     SimpleStringProperty superphylum = new SimpleStringProperty("Null");
@@ -38,7 +38,7 @@ public class Animalia extends Species
     SimpleStringProperty strip = new SimpleStringProperty("Null");
     SimpleStringProperty morph = new SimpleStringProperty("Null");
 
-    // Full Constructor method for com.company.Animalia
+    // Full Constructor method for Animalia
     public Animalia(String itisSerialNumber, String taxonomicName, String commonName,String kingdom, String subkingdom,
                     String infrakingdom, String superphylum, String phylum, String subphylum, String infraphylum,
                     String superclass, String taxonomyClass, String subclass, String infraclass, String superorder,
