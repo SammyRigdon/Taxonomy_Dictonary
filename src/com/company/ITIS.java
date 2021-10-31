@@ -2,6 +2,10 @@ package com.company;/*
 Class for managing the connection to the database and any queries
  */
 
+/*
+Testing git push
+ */
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
