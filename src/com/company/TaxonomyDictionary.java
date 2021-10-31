@@ -20,7 +20,10 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
+@SuppressWarnings({"unchecked", "rawtypes"})
 public class TaxonomyDictionary extends Application {
     // Create nodes with events
     Button searchButton = new Button("Search");
@@ -31,48 +34,48 @@ public class TaxonomyDictionary extends Application {
     RadioButton taxonomicNameButton = new RadioButton("Scientific Name");
 
     // TableView for each Kingdom
-    TableView<Animalia> animaliaTableView = new TableView<Animalia>();
-    TableView<Archaea> archaeaTableView = new TableView<Archaea>();
-    TableView<Bacteria> bacteriaTableView = new TableView<Bacteria>();
-    TableView<Chromista> chromistaTableView = new TableView<Chromista>();
-    TableView<Fungi> fungiTableView = new TableView<Fungi>();
-    TableView<Plantae> plantaeTableView = new TableView<Plantae>();
-    TableView<Protozoa> protozoaTableView = new TableView<Protozoa>();
+    TableView<Animalia> animaliaTableView = new TableView<>();
+    TableView<Archaea> archaeaTableView = new TableView<>();
+    TableView<Bacteria> bacteriaTableView = new TableView<>();
+    TableView<Chromista> chromistaTableView = new TableView<>();
+    TableView<Fungi> fungiTableView = new TableView<>();
+    TableView<Plantae> plantaeTableView = new TableView<>();
+    TableView<Protozoa> protozoaTableView = new TableView<>();
 
     // Animalia Columns
-    TableColumn<Animalia, String> animaliaItisSerialColumn = new TableColumn<Animalia, String>("ITIS Serial Number");
-    TableColumn<Animalia, String> animaliaCommonNameColumn = new TableColumn<Animalia, String>("Common Name");
-    TableColumn<Animalia, String> animaliaTaxonomicNameColumn = new TableColumn<Animalia, String>("Scientific Name");
-    TableColumn<Animalia, String> animaliaSubkingdomColumn = new TableColumn<Animalia, String>("Subkingdom");
-    TableColumn<Animalia, String> animaliaInfrakingdomColumn = new TableColumn<Animalia, String>("Infrakingdom");
-    TableColumn<Animalia, String> animaliaSuperphylumColumn = new TableColumn<Animalia, String>("Superphylum");
-    TableColumn<Animalia, String> animaliaPhylumColumn = new TableColumn<Animalia, String>("Phylum");
-    TableColumn<Animalia, String> animaliaSubphylumColumn = new TableColumn<Animalia, String>("Subphylum");
-    TableColumn<Animalia, String> animaliaInfraphylumColumn = new TableColumn<Animalia, String>("Infraphylum");
-    TableColumn<Animalia, String> animaliaSuperclassColumn = new TableColumn<Animalia, String>("Superclass");
-    TableColumn<Animalia, String> animaliaClassColumn = new TableColumn<Animalia, String>("Class");
-    TableColumn<Animalia, String> animaliaSubclassColumn = new TableColumn<Animalia, String>("Subclass");
-    TableColumn<Animalia, String> animaliaInfraclassColumn = new TableColumn<Animalia, String>("Infraclass");
-    TableColumn<Animalia, String> animaliaSuperorderColumn = new TableColumn<Animalia, String>("Superorder");
-    TableColumn<Animalia, String> animaliaOrderColumn = new TableColumn<Animalia, String>("Order");
-    TableColumn<Animalia, String> animaliaSuborderColumn = new TableColumn<Animalia, String>("Suborder");
-    TableColumn<Animalia, String> animaliaInfraorderColumn = new TableColumn<Animalia, String>("Infraorder");
-    TableColumn<Animalia, String> animaliaSectionColumn = new TableColumn<Animalia, String>("Section");
-    TableColumn<Animalia, String> animaliaSubsectionColumn = new TableColumn<Animalia, String>("Subsection");
-    TableColumn<Animalia, String> animaliaSuperfamilyColumn = new TableColumn<Animalia, String>("Superfamily");
-    TableColumn<Animalia, String> animaliaFamilyColumn = new TableColumn<Animalia, String>("Family");
-    TableColumn<Animalia, String> animaliaSubfamilyColumn = new TableColumn<Animalia, String>("Subfamily");
-    TableColumn<Animalia, String> animaliaTribeColumn = new TableColumn<Animalia, String>("Tribe");
-    TableColumn<Animalia, String> animaliaSubtribeColumn = new TableColumn<Animalia, String>("Subtribe");
-    TableColumn<Animalia, String> animaliaGenusColumn = new TableColumn<Animalia, String>("Genus");
-    TableColumn<Animalia, String> animaliaSubgenusColumn = new TableColumn<Animalia, String>("Subgenus");
-    TableColumn<Animalia, String> animaliaSpeciesColumn = new TableColumn<Animalia, String>("Species");
-    TableColumn<Animalia, String> animaliaSubspeciesColumn = new TableColumn<Animalia, String>("Subspecies");
-    TableColumn<Animalia, String> animaliaVarietyColumn = new TableColumn<Animalia, String>("Variety");
-    TableColumn<Animalia, String> animaliaFormColumn = new TableColumn<Animalia, String>("Form");
-    TableColumn<Animalia, String> animaliaRaceColumn = new TableColumn<Animalia, String>("Race");
-    TableColumn<Animalia, String> animaliaStripColumn = new TableColumn<Animalia, String>("Strip");
-    TableColumn<Animalia, String> animaliaMorphColumn = new TableColumn<Animalia, String>("Morph");
+    TableColumn<Animalia, String> animaliaItisSerialColumn = new TableColumn<>("ITIS Serial Number");
+    TableColumn<Animalia, String> animaliaCommonNameColumn = new TableColumn<>("Common Name");
+    TableColumn<Animalia, String> animaliaTaxonomicNameColumn = new TableColumn<>("Scientific Name");
+    TableColumn<Animalia, String> animaliaSubkingdomColumn = new TableColumn<>("Subkingdom");
+    TableColumn<Animalia, String> animaliaInfrakingdomColumn = new TableColumn<>("Infrakingdom");
+    TableColumn<Animalia, String> animaliaSuperphylumColumn = new TableColumn<>("Superphylum");
+    TableColumn<Animalia, String> animaliaPhylumColumn = new TableColumn<>("Phylum");
+    TableColumn<Animalia, String> animaliaSubphylumColumn = new TableColumn<>("Subphylum");
+    TableColumn<Animalia, String> animaliaInfraphylumColumn = new TableColumn<>("Infraphylum");
+    TableColumn<Animalia, String> animaliaSuperclassColumn = new TableColumn<>("Superclass");
+    TableColumn<Animalia, String> animaliaClassColumn = new TableColumn<>("Class");
+    TableColumn<Animalia, String> animaliaSubclassColumn = new TableColumn<>("Subclass");
+    TableColumn<Animalia, String> animaliaInfraclassColumn = new TableColumn<>("Infraclass");
+    TableColumn<Animalia, String> animaliaSuperorderColumn = new TableColumn<>("Superorder");
+    TableColumn<Animalia, String> animaliaOrderColumn = new TableColumn<>("Order");
+    TableColumn<Animalia, String> animaliaSuborderColumn = new TableColumn<>("Suborder");
+    TableColumn<Animalia, String> animaliaInfraorderColumn = new TableColumn<>("Infraorder");
+    TableColumn<Animalia, String> animaliaSectionColumn = new TableColumn<>("Section");
+    TableColumn<Animalia, String> animaliaSubsectionColumn = new TableColumn<>("Subsection");
+    TableColumn<Animalia, String> animaliaSuperfamilyColumn = new TableColumn<>("Superfamily");
+    TableColumn<Animalia, String> animaliaFamilyColumn = new TableColumn<>("Family");
+    TableColumn<Animalia, String> animaliaSubfamilyColumn = new TableColumn<>("Subfamily");
+    TableColumn<Animalia, String> animaliaTribeColumn = new TableColumn<>("Tribe");
+    TableColumn<Animalia, String> animaliaSubtribeColumn = new TableColumn<>("Subtribe");
+    TableColumn<Animalia, String> animaliaGenusColumn = new TableColumn<>("Genus");
+    TableColumn<Animalia, String> animaliaSubgenusColumn = new TableColumn<>("Subgenus");
+    TableColumn<Animalia, String> animaliaSpeciesColumn = new TableColumn<>("Species");
+    TableColumn<Animalia, String> animaliaSubspeciesColumn = new TableColumn<>("Subspecies");
+    TableColumn<Animalia, String> animaliaVarietyColumn = new TableColumn<>("Variety");
+    TableColumn<Animalia, String> animaliaFormColumn = new TableColumn<>("Form");
+    TableColumn<Animalia, String> animaliaRaceColumn = new TableColumn<>("Race");
+    TableColumn<Animalia, String> animaliaStripColumn = new TableColumn<>("Strip");
+    TableColumn<Animalia, String> animaliaMorphColumn = new TableColumn<>("Morph");
 
     // Archaea Columns
 
@@ -83,36 +86,36 @@ public class TaxonomyDictionary extends Application {
     // Fungi Columns
 
     // Plantae Columns
-    TableColumn<Plantae, String> plantaeItisSerialColumn = new TableColumn<Plantae, String>("ITIS Serial Number");
-    TableColumn<Plantae, String> plantaeCommonNameColumn = new TableColumn<Plantae, String>("Common Name");
-    TableColumn<Plantae, String> plantaeTaxonomicNameColumn = new TableColumn<Plantae, String>("Scientific Name");
-    TableColumn<Plantae, String> plantaeSubkingdomColumn = new TableColumn<Plantae,String >("Subkingdom");
-    TableColumn<Plantae, String> plantaeInfrakingdomColumn = new TableColumn<Plantae, String>("Infrakingdom");
-    TableColumn<Plantae, String> plantaeSuperdivisionColumn = new TableColumn<Plantae, String>("Superdivision");
-    TableColumn<Plantae, String> plantaeDivisionColumn = new TableColumn<Plantae, String>("Division");
-    TableColumn<Plantae, String> plantaeSubdivisionColumn = new TableColumn<Plantae, String>("Subdivision");
-    TableColumn<Plantae, String> plantaeInfradivisionColumn = new TableColumn<Plantae, String>("Infradivision");
-    TableColumn<Plantae, String> plantaeSuperclassColumn = new TableColumn<Plantae, String>("Superclass");
-    TableColumn<Plantae, String> plantaeClassColumn = new TableColumn<Plantae, String>("Class");
-    TableColumn<Plantae, String> plantaeSubclassColumn = new TableColumn<Plantae, String>("Subclass");
-    TableColumn<Plantae, String> plantaeInfraclassColumn = new TableColumn<Plantae, String>("Infraclass");
-    TableColumn<Plantae, String> plantaeSuperorderColumn = new TableColumn<Plantae, String>("Superorder");
-    TableColumn<Plantae, String> plantaeOrderColumn = new TableColumn<Plantae, String>("Order");
-    TableColumn<Plantae, String> plantaeSuborderColumn = new TableColumn<Plantae, String>("Suborder");
-    TableColumn<Plantae, String> plantaeFamilyColumn = new TableColumn<Plantae, String>("Family");
-    TableColumn<Plantae, String> plantaeSubfamilyColumn = new TableColumn<Plantae, String>("Subfamily");
-    TableColumn<Plantae, String> plantaeTribeColumn = new TableColumn<Plantae, String>("Tribe");
-    TableColumn<Plantae, String> plantaeSubtribeColumn = new TableColumn<Plantae, String>("Subtribe");
-    TableColumn<Plantae, String> plantaeGenusColumn = new TableColumn<Plantae, String>("Genus");
-    TableColumn<Plantae, String> plantaeSubgenusColumn = new TableColumn<Plantae, String>("Subgenus");
-    TableColumn<Plantae, String> plantaeSectionColumn = new TableColumn<Plantae, String>("Section");
-    TableColumn<Plantae, String> plantaeSubsectionColumn = new TableColumn<Plantae, String>("Subsection");
-    TableColumn<Plantae, String> plantaeSpeciesColumn = new TableColumn<Plantae, String>("Species");
-    TableColumn<Plantae, String> plantaeSubspeciesColumn = new TableColumn<Plantae, String>("Subspecies");
-    TableColumn<Plantae, String> plantaeVarietyColumn = new TableColumn<Plantae, String>("Variety");
-    TableColumn<Plantae, String> plantaeSubvarietyColumn = new TableColumn<Plantae, String>("Subvariety");
-    TableColumn<Plantae, String> plantaeFormColumn = new TableColumn<Plantae, String>("Form");
-    TableColumn<Plantae, String> plantaeSubformColumn = new TableColumn<Plantae, String>("Subform");
+    TableColumn<Plantae, String> plantaeItisSerialColumn = new TableColumn<>("ITIS Serial Number");
+    TableColumn<Plantae, String> plantaeCommonNameColumn = new TableColumn<>("Common Name");
+    TableColumn<Plantae, String> plantaeTaxonomicNameColumn = new TableColumn<>("Scientific Name");
+    TableColumn<Plantae, String> plantaeSubkingdomColumn = new TableColumn<>("Subkingdom");
+    TableColumn<Plantae, String> plantaeInfrakingdomColumn = new TableColumn<>("Infrakingdom");
+    TableColumn<Plantae, String> plantaeSuperdivisionColumn = new TableColumn<>("Superdivision");
+    TableColumn<Plantae, String> plantaeDivisionColumn = new TableColumn<>("Division");
+    TableColumn<Plantae, String> plantaeSubdivisionColumn = new TableColumn<>("Subdivision");
+    TableColumn<Plantae, String> plantaeInfradivisionColumn = new TableColumn<>("Infradivision");
+    TableColumn<Plantae, String> plantaeSuperclassColumn = new TableColumn<>("Superclass");
+    TableColumn<Plantae, String> plantaeClassColumn = new TableColumn<>("Class");
+    TableColumn<Plantae, String> plantaeSubclassColumn = new TableColumn<>("Subclass");
+    TableColumn<Plantae, String> plantaeInfraclassColumn = new TableColumn<>("Infraclass");
+    TableColumn<Plantae, String> plantaeSuperorderColumn = new TableColumn<>("Superorder");
+    TableColumn<Plantae, String> plantaeOrderColumn = new TableColumn<>("Order");
+    TableColumn<Plantae, String> plantaeSuborderColumn = new TableColumn<>("Suborder");
+    TableColumn<Plantae, String> plantaeFamilyColumn = new TableColumn<>("Family");
+    TableColumn<Plantae, String> plantaeSubfamilyColumn = new TableColumn<>("Subfamily");
+    TableColumn<Plantae, String> plantaeTribeColumn = new TableColumn<>("Tribe");
+    TableColumn<Plantae, String> plantaeSubtribeColumn = new TableColumn<>("Subtribe");
+    TableColumn<Plantae, String> plantaeGenusColumn = new TableColumn<>("Genus");
+    TableColumn<Plantae, String> plantaeSubgenusColumn = new TableColumn<>("Subgenus");
+    TableColumn<Plantae, String> plantaeSectionColumn = new TableColumn<>("Section");
+    TableColumn<Plantae, String> plantaeSubsectionColumn = new TableColumn<>("Subsection");
+    TableColumn<Plantae, String> plantaeSpeciesColumn = new TableColumn<>("Species");
+    TableColumn<Plantae, String> plantaeSubspeciesColumn = new TableColumn<>("Subspecies");
+    TableColumn<Plantae, String> plantaeVarietyColumn = new TableColumn<>("Variety");
+    TableColumn<Plantae, String> plantaeSubvarietyColumn = new TableColumn<>("Subvariety");
+    TableColumn<Plantae, String> plantaeFormColumn = new TableColumn<>("Form");
+    TableColumn<Plantae, String> plantaeSubformColumn = new TableColumn<>("Subform");
 
 
     // Protozoa Columns
@@ -127,7 +130,7 @@ public class TaxonomyDictionary extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         // Pane to hold all nodes
         root.setPadding(new Insets(10, 10, 10, 10));
         root.setAlignment(Pos.CENTER);
@@ -140,39 +143,39 @@ public class TaxonomyDictionary extends Application {
         radioGroup.setPadding(new Insets(10, 10, 10, 10));
 
         // Animalia Column Factories
-        animaliaItisSerialColumn.setCellValueFactory(new PropertyValueFactory<Animalia, String>("itisSerialNumber"));
-        animaliaCommonNameColumn.setCellValueFactory(new PropertyValueFactory<Animalia, String>("commonName"));
-        animaliaTaxonomicNameColumn.setCellValueFactory(new PropertyValueFactory<Animalia, String>("taxonomicName"));
-        animaliaSubkingdomColumn.setCellValueFactory(new PropertyValueFactory<Animalia, String>("subkingdom"));
-        animaliaInfrakingdomColumn.setCellValueFactory(new PropertyValueFactory<Animalia, String>("infrakingdom"));
-        animaliaSuperphylumColumn.setCellValueFactory(new PropertyValueFactory<Animalia,String>("superphylum"));
-        animaliaPhylumColumn.setCellValueFactory(new PropertyValueFactory<Animalia, String>("phylum"));
-        animaliaSubphylumColumn.setCellValueFactory(new PropertyValueFactory<Animalia,String>("subphylum"));
-        animaliaInfraphylumColumn.setCellValueFactory(new PropertyValueFactory<Animalia,String>("infraphylum"));
-        animaliaSuperclassColumn.setCellValueFactory(new PropertyValueFactory<Animalia, String>("superclass"));
-        animaliaClassColumn.setCellValueFactory(new PropertyValueFactory<Animalia,String>("taxonomyClass"));
-        animaliaSubclassColumn.setCellValueFactory(new PropertyValueFactory<Animalia, String>("subclass"));
-        animaliaInfraclassColumn.setCellValueFactory(new PropertyValueFactory<Animalia, String >("infraclass"));
-        animaliaSuperorderColumn.setCellValueFactory(new PropertyValueFactory<Animalia,String>("superorder"));
-        animaliaOrderColumn.setCellValueFactory(new PropertyValueFactory<Animalia,String >("order"));
-        animaliaSuborderColumn.setCellValueFactory(new PropertyValueFactory<Animalia,String >("suborder"));
-        animaliaInfraorderColumn.setCellValueFactory(new PropertyValueFactory<Animalia, String>("infraorder"));
-        animaliaSectionColumn.setCellValueFactory(new PropertyValueFactory<Animalia, String>("section"));
-        animaliaSubsectionColumn.setCellValueFactory(new PropertyValueFactory<Animalia, String >("subsection"));
-        animaliaSuperfamilyColumn.setCellValueFactory(new PropertyValueFactory<Animalia, String>("superfamily"));
-        animaliaFamilyColumn.setCellValueFactory(new PropertyValueFactory<Animalia,String >("family"));
-        animaliaSubfamilyColumn.setCellValueFactory(new PropertyValueFactory<Animalia,String>("subfamily"));
-        animaliaTribeColumn.setCellValueFactory(new PropertyValueFactory<Animalia, String>("tribe"));
-        animaliaSubtribeColumn.setCellValueFactory(new PropertyValueFactory<Animalia, String>("subtribe"));
-        animaliaGenusColumn.setCellValueFactory(new PropertyValueFactory<Animalia,String>("genus"));
-        animaliaSubgenusColumn.setCellValueFactory(new PropertyValueFactory<Animalia, String>("subgenus"));
-        animaliaSpeciesColumn.setCellValueFactory(new PropertyValueFactory<Animalia, String>("species"));
-        animaliaSubspeciesColumn.setCellValueFactory(new PropertyValueFactory<Animalia, String>("subspecies"));
-        animaliaVarietyColumn.setCellValueFactory(new PropertyValueFactory<Animalia, String>("variety"));
-        animaliaFormColumn.setCellValueFactory(new PropertyValueFactory<Animalia, String>("form"));
-        animaliaRaceColumn.setCellValueFactory(new PropertyValueFactory<Animalia,String>("race"));
-        animaliaStripColumn.setCellValueFactory(new PropertyValueFactory<Animalia,String >("strip"));
-        animaliaMorphColumn.setCellValueFactory(new PropertyValueFactory<Animalia, String>("morph"));
+        animaliaItisSerialColumn.setCellValueFactory(new PropertyValueFactory<>("itisSerialNumber"));
+        animaliaCommonNameColumn.setCellValueFactory(new PropertyValueFactory<>("commonName"));
+        animaliaTaxonomicNameColumn.setCellValueFactory(new PropertyValueFactory<>("taxonomicName"));
+        animaliaSubkingdomColumn.setCellValueFactory(new PropertyValueFactory<>("subkingdom"));
+        animaliaInfrakingdomColumn.setCellValueFactory(new PropertyValueFactory<>("infrakingdom"));
+        animaliaSuperphylumColumn.setCellValueFactory(new PropertyValueFactory<>("superphylum"));
+        animaliaPhylumColumn.setCellValueFactory(new PropertyValueFactory<>("phylum"));
+        animaliaSubphylumColumn.setCellValueFactory(new PropertyValueFactory<>("subphylum"));
+        animaliaInfraphylumColumn.setCellValueFactory(new PropertyValueFactory<>("infraphylum"));
+        animaliaSuperclassColumn.setCellValueFactory(new PropertyValueFactory<>("superclass"));
+        animaliaClassColumn.setCellValueFactory(new PropertyValueFactory<>("taxonomyClass"));
+        animaliaSubclassColumn.setCellValueFactory(new PropertyValueFactory<>("subclass"));
+        animaliaInfraclassColumn.setCellValueFactory(new PropertyValueFactory<>("infraclass"));
+        animaliaSuperorderColumn.setCellValueFactory(new PropertyValueFactory<>("superorder"));
+        animaliaOrderColumn.setCellValueFactory(new PropertyValueFactory<>("order"));
+        animaliaSuborderColumn.setCellValueFactory(new PropertyValueFactory<>("suborder"));
+        animaliaInfraorderColumn.setCellValueFactory(new PropertyValueFactory<>("infraorder"));
+        animaliaSectionColumn.setCellValueFactory(new PropertyValueFactory<>("section"));
+        animaliaSubsectionColumn.setCellValueFactory(new PropertyValueFactory<>("subsection"));
+        animaliaSuperfamilyColumn.setCellValueFactory(new PropertyValueFactory<>("superfamily"));
+        animaliaFamilyColumn.setCellValueFactory(new PropertyValueFactory<>("family"));
+        animaliaSubfamilyColumn.setCellValueFactory(new PropertyValueFactory<>("subfamily"));
+        animaliaTribeColumn.setCellValueFactory(new PropertyValueFactory<>("tribe"));
+        animaliaSubtribeColumn.setCellValueFactory(new PropertyValueFactory<>("subtribe"));
+        animaliaGenusColumn.setCellValueFactory(new PropertyValueFactory<>("genus"));
+        animaliaSubgenusColumn.setCellValueFactory(new PropertyValueFactory<>("subgenus"));
+        animaliaSpeciesColumn.setCellValueFactory(new PropertyValueFactory<>("species"));
+        animaliaSubspeciesColumn.setCellValueFactory(new PropertyValueFactory<>("subspecies"));
+        animaliaVarietyColumn.setCellValueFactory(new PropertyValueFactory<>("variety"));
+        animaliaFormColumn.setCellValueFactory(new PropertyValueFactory<>("form"));
+        animaliaRaceColumn.setCellValueFactory(new PropertyValueFactory<>("race"));
+        animaliaStripColumn.setCellValueFactory(new PropertyValueFactory<>("strip"));
+        animaliaMorphColumn.setCellValueFactory(new PropertyValueFactory<>("morph"));
 
         // Animalia Table Settings
         animaliaTableView.setEditable(true);
@@ -222,36 +225,36 @@ public class TaxonomyDictionary extends Application {
         animaliaTableView.setPlaceholder(new Label("No Search results Kingdom Animalia"));
 
         // Plantae Column Factories
-        plantaeItisSerialColumn.setCellValueFactory(new PropertyValueFactory<Plantae, String>("itisSerialNumber"));
-        plantaeCommonNameColumn.setCellValueFactory(new PropertyValueFactory<Plantae, String>("commonName"));
-        plantaeTaxonomicNameColumn.setCellValueFactory(new PropertyValueFactory<Plantae, String>("taxonomicName"));
-        plantaeSubkingdomColumn.setCellValueFactory(new PropertyValueFactory<Plantae, String>("subkingdom"));
-        plantaeInfrakingdomColumn.setCellValueFactory(new PropertyValueFactory<Plantae, String>("infrakingdom"));
-        plantaeSuperdivisionColumn.setCellValueFactory(new PropertyValueFactory<Plantae,String>("superdivision"));
-        plantaeDivisionColumn.setCellValueFactory(new PropertyValueFactory<Plantae, String>("division"));
-        plantaeSubdivisionColumn.setCellValueFactory(new PropertyValueFactory<Plantae,String>("subdivision"));
-        plantaeInfradivisionColumn.setCellValueFactory(new PropertyValueFactory<Plantae,String>("infradivision"));
-        plantaeSuperclassColumn.setCellValueFactory(new PropertyValueFactory<Plantae, String>("superclass"));
-        plantaeClassColumn.setCellValueFactory(new PropertyValueFactory<Plantae,String>("taxonomyClass"));
-        plantaeSubclassColumn.setCellValueFactory(new PropertyValueFactory<Plantae, String>("subclass"));
-        plantaeInfraclassColumn.setCellValueFactory(new PropertyValueFactory<Plantae, String >("infraclass"));
-        plantaeSuperorderColumn.setCellValueFactory(new PropertyValueFactory<Plantae,String>("superorder"));
-        plantaeOrderColumn.setCellValueFactory(new PropertyValueFactory<Plantae,String >("order"));
-        plantaeSuborderColumn.setCellValueFactory(new PropertyValueFactory<Plantae,String >("suborder"));
-        plantaeFamilyColumn.setCellValueFactory(new PropertyValueFactory<Plantae,String >("family"));
-        plantaeSubfamilyColumn.setCellValueFactory(new PropertyValueFactory<Plantae,String>("subfamily"));
-        plantaeTribeColumn.setCellValueFactory(new PropertyValueFactory<Plantae, String>("tribe"));
-        plantaeSubtribeColumn.setCellValueFactory(new PropertyValueFactory<Plantae, String>("subtribe"));
-        plantaeGenusColumn.setCellValueFactory(new PropertyValueFactory<Plantae,String>("genus"));
-        plantaeSubgenusColumn.setCellValueFactory(new PropertyValueFactory<Plantae, String>("subgenus"));
-        plantaeSectionColumn.setCellValueFactory(new PropertyValueFactory<Plantae, String>("section"));
-        plantaeSubsectionColumn.setCellValueFactory(new PropertyValueFactory<Plantae, String >("subsection"));
-        plantaeSpeciesColumn.setCellValueFactory(new PropertyValueFactory<Plantae, String>("species"));
-        plantaeSubspeciesColumn.setCellValueFactory(new PropertyValueFactory<Plantae, String>("subspecies"));
-        plantaeVarietyColumn.setCellValueFactory(new PropertyValueFactory<Plantae, String>("variety"));
-        plantaeSubvarietyColumn.setCellValueFactory(new PropertyValueFactory<Plantae,String>("subvariety"));
-        plantaeFormColumn.setCellValueFactory(new PropertyValueFactory<Plantae, String>("form"));
-        plantaeSubformColumn.setCellValueFactory(new PropertyValueFactory<Plantae,String>("subform"));
+        plantaeItisSerialColumn.setCellValueFactory(new PropertyValueFactory<>("itisSerialNumber"));
+        plantaeCommonNameColumn.setCellValueFactory(new PropertyValueFactory<>("commonName"));
+        plantaeTaxonomicNameColumn.setCellValueFactory(new PropertyValueFactory<>("taxonomicName"));
+        plantaeSubkingdomColumn.setCellValueFactory(new PropertyValueFactory<>("subkingdom"));
+        plantaeInfrakingdomColumn.setCellValueFactory(new PropertyValueFactory<>("infrakingdom"));
+        plantaeSuperdivisionColumn.setCellValueFactory(new PropertyValueFactory<>("superdivision"));
+        plantaeDivisionColumn.setCellValueFactory(new PropertyValueFactory<>("division"));
+        plantaeSubdivisionColumn.setCellValueFactory(new PropertyValueFactory<>("subdivision"));
+        plantaeInfradivisionColumn.setCellValueFactory(new PropertyValueFactory<>("infradivision"));
+        plantaeSuperclassColumn.setCellValueFactory(new PropertyValueFactory<>("superclass"));
+        plantaeClassColumn.setCellValueFactory(new PropertyValueFactory<>("taxonomyClass"));
+        plantaeSubclassColumn.setCellValueFactory(new PropertyValueFactory<>("subclass"));
+        plantaeInfraclassColumn.setCellValueFactory(new PropertyValueFactory<>("infraclass"));
+        plantaeSuperorderColumn.setCellValueFactory(new PropertyValueFactory<>("superorder"));
+        plantaeOrderColumn.setCellValueFactory(new PropertyValueFactory<>("order"));
+        plantaeSuborderColumn.setCellValueFactory(new PropertyValueFactory<>("suborder"));
+        plantaeFamilyColumn.setCellValueFactory(new PropertyValueFactory<>("family"));
+        plantaeSubfamilyColumn.setCellValueFactory(new PropertyValueFactory<>("subfamily"));
+        plantaeTribeColumn.setCellValueFactory(new PropertyValueFactory<>("tribe"));
+        plantaeSubtribeColumn.setCellValueFactory(new PropertyValueFactory<>("subtribe"));
+        plantaeGenusColumn.setCellValueFactory(new PropertyValueFactory<>("genus"));
+        plantaeSubgenusColumn.setCellValueFactory(new PropertyValueFactory<>("subgenus"));
+        plantaeSectionColumn.setCellValueFactory(new PropertyValueFactory<>("section"));
+        plantaeSubsectionColumn.setCellValueFactory(new PropertyValueFactory<>("subsection"));
+        plantaeSpeciesColumn.setCellValueFactory(new PropertyValueFactory<>("species"));
+        plantaeSubspeciesColumn.setCellValueFactory(new PropertyValueFactory<>("subspecies"));
+        plantaeVarietyColumn.setCellValueFactory(new PropertyValueFactory<>("variety"));
+        plantaeSubvarietyColumn.setCellValueFactory(new PropertyValueFactory<>("subvariety"));
+        plantaeFormColumn.setCellValueFactory(new PropertyValueFactory<>("form"));
+        plantaeSubformColumn.setCellValueFactory(new PropertyValueFactory<>("subform"));
 
 
         // Plantae Table Settings
@@ -333,8 +336,8 @@ public class TaxonomyDictionary extends Application {
         ITIS searcher = new ITIS();
 
         // Get search term
-        String searchTerm = searchTermEntry.getText().toString();
-        ObservableList<Animalia> searchResults = FXCollections.observableArrayList();
+        String searchTerm = searchTermEntry.getText();
+        List<Map> searchResults = FXCollections.observableArrayList();
         if (searchType.getSelectedToggle() == itisSerialNumberButton) {
             try {
                 searchResults = searcher.itisSerialNumberSearch(searchTerm);
@@ -342,7 +345,7 @@ public class TaxonomyDictionary extends Application {
                 e.printStackTrace();
             }
         }
-
+/*
         else if (searchType.getSelectedToggle() == commonNameButton) {
             try {
                 searchResults = searcher.commonNameSearch(searchTerm);
@@ -358,22 +361,27 @@ public class TaxonomyDictionary extends Application {
                 e.printStackTrace();
             }
         }
-        animaliaTableView.setItems(searchResults);
+ */
+        final ObservableList<Animalia> data = FXCollections.observableArrayList();
+        Map<Integer, Animalia> animaliaMap = searchResults.get(0);
+        for(int i=0; i<=animaliaMap.size()-1; i++){
+            Animalia currentResult = animaliaMap.get(i);
+            data.add(currentResult);
+        }
+        animaliaTableView.setItems(data);
     }
 
     public void setTable()
     {
-        switch (kingdomComboBox.getValue().toString())
-        {
-            case "Animalia":
+        switch (kingdomComboBox.getValue()) {
+            case "Animalia" -> {
                 root.getChildren().remove(5);
                 root.getChildren().add(animaliaTableView);
-                break;
-
-            case "Plantae":
+            }
+            case "Plantae" -> {
                 root.getChildren().remove(5);
                 root.getChildren().add(plantaeTableView);
-                break;
+            }
         }
     }
 }
