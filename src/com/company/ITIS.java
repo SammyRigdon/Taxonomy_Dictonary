@@ -4,9 +4,13 @@ Class for managing the connection to the database and any queries
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.shape.Arc;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ITIS
 {
@@ -180,15 +184,23 @@ public class ITIS
 
     // TODO Rewrite Query functions to use smaller specialized functions
     // Get info based on ITIS SN
-    public Species[] itisSerialNumberSearch(String searchTerm) throws SQLException
+    public List<Map> itisSerialNumberSearch(String searchTerm) throws SQLException
     {
         // Queries
         final String QUERY_STRING;
 
         // Results
         ResultSet queryResults = null;
-        HashMap<Integer, SearchResults> resultsHashMap;
+        HashMap<Integer, SearchResults> masterResultsHashMap;
         HashMap<Integer, Animalia> animaliaHashMap = new HashMap<Integer, Animalia>();
+        HashMap<Integer, Archaea> archaeaHashMap = new HashMap<Integer, Archaea>();
+        HashMap<Integer, Bacteria> bacteriaHashMap = new HashMap<Integer, Bacteria>();
+        HashMap<Integer, Chromista> chromistaHashMap = new HashMap<Integer, Chromista>();
+        HashMap<Integer, Fungi> fungiHashMap = new HashMap<Integer, Fungi>();
+        HashMap<Integer, Plantae> plantaeHashMap = new HashMap<Integer, Plantae>();
+        HashMap<Integer, Protozoa> protozoaHashMap = new HashMap<Integer, Protozoa>();
+        @SuppressWarnings("rawtypes")
+        List<Map> data = null;
 
         // Add % to searchTerm
         searchTerm = "%" + searchTerm + "%";
@@ -208,13 +220,13 @@ public class ITIS
         queryResults = runQuery(QUERY_STRING, searchTerm);
 
         // Convert to SearchResult
-        resultsHashMap = toSearchResult(queryResults);
+        masterResultsHashMap = toSearchResult(queryResults);
 
 
         // Convert results objects to the proper type based on Kingdom
-        for(int i=0; i<=resultsHashMap.size()-1; i++)
+        for(int i=0; i<=masterResultsHashMap.size()-1; i++)
         {
-            SearchResults currentResult = resultsHashMap.get(i);
+            SearchResults currentResult = masterResultsHashMap.get(i);
             switch(currentResult.kingdomName){
                 case "Animalia":
                     Animalia currentResultAnimalia = currentResult.toAnimalia();
@@ -232,11 +244,15 @@ public class ITIS
             }
 
         }
-        ObservableList<Animalia> data = FXCollections.observableArrayList();
-        for(int i=0; i<=animaliaHashMap.size()-1; i++){
-            Animalia currentResult = animaliaHashMap.get(i);
-            data.add(currentResult);
-        }
+
+        // Update data with all results
+        data.add(0, animaliaHashMap);
+        data.add(1, archaeaHashMap);
+        data.add(2, bacteriaHashMap);
+        data.add(3, chromistaHashMap);
+        data.add(4, fungiHashMap);
+        data.add(5, plantaeHashMap);
+        data.add(6, protozoaHashMap);
         return data;
     }
 
