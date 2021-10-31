@@ -1,4 +1,4 @@
-/*
+package com.company;/*
 Class for managing the connection to the database and any queries
  */
 
@@ -18,7 +18,7 @@ public class ITIS
         try
         {
             // Location of database, database in project root so only the name is needed
-            String url = "jdbc:sqlite:ITIS.sqlite";
+            String url = "jdbc:sqlite:com.company.ITIS.sqlite";
 
             // Creates the connection
             conn = DriverManager.getConnection(url);
@@ -87,7 +87,7 @@ public class ITIS
                 kingdomID = resultSet.getString("kingdom_id");
                 hierarchyString = resultSet.getString("hierarchy_string");
 
-                // Create SearchResults object
+                // Create com.company.SearchResults object
                 SearchResults result = new SearchResults(itisSerialNumber, taxonomicName, commonName, kingdomName, kingdomID, hierarchyString,null);
                 resultsHashMap.put(index, result);
                 index++;
@@ -179,7 +179,7 @@ public class ITIS
     }
 
     // TODO Rewrite Query functions to use smaller specialized functions
-    // Get info based on ITIS SN
+    // Get info based on com.company.ITIS SN
     public Species[] itisSerialNumberSearch(String searchTerm) throws SQLException
     {
         // Queries
@@ -216,16 +216,16 @@ public class ITIS
         {
             SearchResults currentResult = resultsHashMap.get(i);
             switch(currentResult.kingdomName){
-                case "Animalia":
+                case "com.company.Animalia":
                     Animalia currentResultAnimalia = currentResult.toAnimalia();
                     animaliaHashMap.put(i, currentResultAnimalia);
                     break;
 
-                case "Archaea":
-                    //Archaea currentResultArchaea = currentResult.toArchaea();
+                case "com.company.Archaea":
+                    //com.company.Archaea currentResultArchaea = currentResult.toArchaea();
                     break;
 
-                case "Bacteria":
+                case "com.company.Bacteria":
                     break;
 
 
@@ -281,7 +281,7 @@ public class ITIS
                 taxonomicName = queryResults.getString("completename");
                 commonName = queryResults.getString("vernacular_name");
 
-                // Create SearchResults object
+                // Create com.company.SearchResults object
                 SearchResults result = new SearchResults(itisSerialNumber, taxonomicName, commonName, null, null, null, null);
                 resultsHashMap.put(index, result);
                 index++;
@@ -297,7 +297,7 @@ public class ITIS
             SearchResults currentResult = resultsHashMap.get(i);
             animaliaHashMap.put(i, currentResult.toAnimalia());
             /*
-            System.out.println("ITIS Serial Number: " + currentResult.itisSerialNumber);
+            System.out.println("com.company.ITIS Serial Number: " + currentResult.itisSerialNumber);
             System.out.println("Taxonomic Name: " + currentResult.taxonomicName);
             System.out.println("Common name: " + currentResult.commonName);
              */
@@ -349,7 +349,7 @@ public class ITIS
                 taxonomicName = queryResults.getString("completename");
                 commonName = queryResults.getString("vernacular_name");
 
-                // Create SearchResults object
+                // Create com.company.SearchResults object
                 SearchResults result = new SearchResults(itisSerialNumber, taxonomicName, commonName, null, null, null, null);
                 resultsHashMap.put(index, result);
                 index++;
@@ -365,7 +365,7 @@ public class ITIS
             SearchResults currentResult = resultsHashMap.get(i);
             animaliaHashMap.put(i, currentResult.toAnimalia());
             /*
-            System.out.println("ITIS Serial Number: " + currentResult.itisSerialNumber);
+            System.out.println("com.company.ITIS Serial Number: " + currentResult.itisSerialNumber);
             System.out.println("Taxonomic Name: " + currentResult.taxonomicName);
             System.out.println("Common name: " + currentResult.commonName);
              */

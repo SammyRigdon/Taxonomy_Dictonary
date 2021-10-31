@@ -1,9 +1,11 @@
+package com.company;
+
 import javafx.beans.property.SimpleStringProperty;
 
 public class Plantae extends Species
 {
-    // TODO Plantae Implementation
-    // Plantae Variables
+    // TODO com.company.Plantae Implementation
+    // com.company.Plantae Variables
     SimpleStringProperty subkingdom = new SimpleStringProperty("Null");
     SimpleStringProperty infrakingdom = new SimpleStringProperty("Null");
     SimpleStringProperty superdivision = new SimpleStringProperty("Null");

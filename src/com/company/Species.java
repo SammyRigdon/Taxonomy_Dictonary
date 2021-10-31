@@ -1,4 +1,4 @@
-/*
+package com.company;/*
 Abstract class for the implementation of the animalia platea and fungi classes
  */
 

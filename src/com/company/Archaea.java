@@ -1,8 +1,10 @@
+package com.company;
+
 import javafx.beans.property.SimpleStringProperty;
 
 public class Archaea extends Species
 {
-    // TODO Archaea Implementation
+    // TODO com.company.Archaea Implementation
     SimpleStringProperty subkingdom = new SimpleStringProperty("Null");
     SimpleStringProperty phylum = new SimpleStringProperty("Null");
     SimpleStringProperty subphylum = new SimpleStringProperty("Null");

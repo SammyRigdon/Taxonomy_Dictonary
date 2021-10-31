@@ -1,3 +1,5 @@
+package com.company;
+
 import java.util.HashMap;
 
 public class SearchResults
@@ -34,7 +36,7 @@ public class SearchResults
 
     public Animalia toAnimalia() {
         // Create new object and return
-        // TODO Seperate hiererchy HashMap into strings for Animalia object
+        // TODO Seperate hiererchy HashMap into strings for com.company.Animalia object
         if(this.hierarchy != null)
         {
             return new com.company.Animalia(this.itisSerialNumber, this.taxonomicName, this.commonName, this.kingdomName,
@@ -45,7 +47,7 @@ public class SearchResults
                     this.hierarchy.get("Suborder"), this.hierarchy.get("Infraorder"), this.hierarchy.get("Section"),
                     this.hierarchy.get("Subsection"), this.hierarchy.get("Superfamily"), this.hierarchy.get("Family"),
                     this.hierarchy.get("Subfamily"), this.hierarchy.get("Tribe"), this.hierarchy.get("Subtribe"),
-                    this.hierarchy.get("Genus"), this.hierarchy.get("Subgenus"), this.hierarchy.get("Species"),
+                    this.hierarchy.get("Genus"), this.hierarchy.get("Subgenus"), this.hierarchy.get("com.company.Species"),
                     this.hierarchy.get("Subspecies"), this.hierarchy.get("Variety"), this.hierarchy.get("Form"),
                     this.hierarchy.get("Race"), this.hierarchy.get("Strip"), this.hierarchy.get("Morph"));
         }

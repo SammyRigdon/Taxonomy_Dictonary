@@ -1,7 +1,7 @@
-/*
+package com.company;/*
 Taxonomy Dictionary
 Created by Sammy Rigdon, started on 04/02/21
-Taxonomy Dictionary allows the user to find the common english name and full taxonomy for any species using the ITIS database
+Taxonomy Dictionary allows the user to find the common english name and full taxonomy for any species using the com.company.ITIS database
  */
 
 import javafx.application.Application;
@@ -26,7 +26,7 @@ public class TaxonomyDictionary extends Application {
     Button searchButton = new Button("Search");
     TextField searchTermEntry = new TextField();
     ToggleGroup searchType = new ToggleGroup();
-    RadioButton itisSerialNumberButton = new RadioButton("ITIS Serial Number");
+    RadioButton itisSerialNumberButton = new RadioButton("com.company.ITIS Serial Number");
     RadioButton commonNameButton = new RadioButton("Common Name");
     RadioButton taxonomicNameButton = new RadioButton("Scientific Name");
 
@@ -39,8 +39,8 @@ public class TaxonomyDictionary extends Application {
     TableView<Plantae> plantaeTableView = new TableView<Plantae>();
     TableView<Protozoa> protozoaTableView = new TableView<Protozoa>();
 
-    // Animalia Columns
-    TableColumn<Animalia, String> animaliaItisSerialColumn = new TableColumn<Animalia, String>("ITIS Serial Number");
+    // com.company.Animalia Columns
+    TableColumn<Animalia, String> animaliaItisSerialColumn = new TableColumn<Animalia, String>("com.company.ITIS Serial Number");
     TableColumn<Animalia, String> animaliaCommonNameColumn = new TableColumn<Animalia, String>("Common Name");
     TableColumn<Animalia, String> animaliaTaxonomicNameColumn = new TableColumn<Animalia, String>("Scientific Name");
     TableColumn<Animalia, String> animaliaSubkingdomColumn = new TableColumn<Animalia, String>("Subkingdom");
@@ -66,7 +66,7 @@ public class TaxonomyDictionary extends Application {
     TableColumn<Animalia, String> animaliaSubtribeColumn = new TableColumn<Animalia, String>("Subtribe");
     TableColumn<Animalia, String> animaliaGenusColumn = new TableColumn<Animalia, String>("Genus");
     TableColumn<Animalia, String> animaliaSubgenusColumn = new TableColumn<Animalia, String>("Subgenus");
-    TableColumn<Animalia, String> animaliaSpeciesColumn = new TableColumn<Animalia, String>("Species");
+    TableColumn<Animalia, String> animaliaSpeciesColumn = new TableColumn<Animalia, String>("com.company.Species");
     TableColumn<Animalia, String> animaliaSubspeciesColumn = new TableColumn<Animalia, String>("Subspecies");
     TableColumn<Animalia, String> animaliaVarietyColumn = new TableColumn<Animalia, String>("Variety");
     TableColumn<Animalia, String> animaliaFormColumn = new TableColumn<Animalia, String>("Form");
@@ -74,16 +74,16 @@ public class TaxonomyDictionary extends Application {
     TableColumn<Animalia, String> animaliaStripColumn = new TableColumn<Animalia, String>("Strip");
     TableColumn<Animalia, String> animaliaMorphColumn = new TableColumn<Animalia, String>("Morph");
 
-    // Archaea Columns
+    // com.company.Archaea Columns
 
-    // Bacteria Columns
+    // com.company.Bacteria Columns
 
-    // Chromista Columns
+    // com.company.Chromista Columns
 
-    // Fungi Columns
+    // com.company.Fungi Columns
 
-    // Plantae Columns
-    TableColumn<Plantae, String> plantaeItisSerialColumn = new TableColumn<Plantae, String>("ITIS Serial Number");
+    // com.company.Plantae Columns
+    TableColumn<Plantae, String> plantaeItisSerialColumn = new TableColumn<Plantae, String>("com.company.ITIS Serial Number");
     TableColumn<Plantae, String> plantaeCommonNameColumn = new TableColumn<Plantae, String>("Common Name");
     TableColumn<Plantae, String> plantaeTaxonomicNameColumn = new TableColumn<Plantae, String>("Scientific Name");
     TableColumn<Plantae, String> plantaeSubkingdomColumn = new TableColumn<Plantae,String >("Subkingdom");
@@ -107,7 +107,7 @@ public class TaxonomyDictionary extends Application {
     TableColumn<Plantae, String> plantaeSubgenusColumn = new TableColumn<Plantae, String>("Subgenus");
     TableColumn<Plantae, String> plantaeSectionColumn = new TableColumn<Plantae, String>("Section");
     TableColumn<Plantae, String> plantaeSubsectionColumn = new TableColumn<Plantae, String>("Subsection");
-    TableColumn<Plantae, String> plantaeSpeciesColumn = new TableColumn<Plantae, String>("Species");
+    TableColumn<Plantae, String> plantaeSpeciesColumn = new TableColumn<Plantae, String>("com.company.Species");
     TableColumn<Plantae, String> plantaeSubspeciesColumn = new TableColumn<Plantae, String>("Subspecies");
     TableColumn<Plantae, String> plantaeVarietyColumn = new TableColumn<Plantae, String>("Variety");
     TableColumn<Plantae, String> plantaeSubvarietyColumn = new TableColumn<Plantae, String>("Subvariety");
@@ -115,9 +115,9 @@ public class TaxonomyDictionary extends Application {
     TableColumn<Plantae, String> plantaeSubformColumn = new TableColumn<Plantae, String>("Subform");
 
 
-    // Protozoa Columns
+    // com.company.Protozoa Columns
 
-    final String[] kingdoms = {"Animalia", "Archaea", "Bacteria", "Chromista", "Fungi", "Plantae", "Protoza"};
+    final String[] kingdoms = {"com.company.Animalia", "com.company.Archaea", "com.company.Bacteria", "com.company.Chromista", "com.company.Fungi", "com.company.Plantae", "Protoza"};
     ComboBox<String> kingdomComboBox = new ComboBox(FXCollections.observableArrayList(kingdoms));
 
     VBox root = new VBox();
@@ -133,13 +133,13 @@ public class TaxonomyDictionary extends Application {
         root.setAlignment(Pos.CENTER);
 
         // Sets default kingdom
-        kingdomComboBox.setValue("Animalia");
+        kingdomComboBox.setValue("com.company.Animalia");
 
         // Hbox to hold radio buttons
         HBox radioGroup = new HBox();
         radioGroup.setPadding(new Insets(10, 10, 10, 10));
 
-        // Animalia Column Factories
+        // com.company.Animalia Column Factories
         animaliaItisSerialColumn.setCellValueFactory(new PropertyValueFactory<Animalia, String>("itisSerialNumber"));
         animaliaCommonNameColumn.setCellValueFactory(new PropertyValueFactory<Animalia, String>("commonName"));
         animaliaTaxonomicNameColumn.setCellValueFactory(new PropertyValueFactory<Animalia, String>("taxonomicName"));
@@ -174,7 +174,7 @@ public class TaxonomyDictionary extends Application {
         animaliaStripColumn.setCellValueFactory(new PropertyValueFactory<Animalia,String >("strip"));
         animaliaMorphColumn.setCellValueFactory(new PropertyValueFactory<Animalia, String>("morph"));
 
-        // Animalia Table Settings
+        // com.company.Animalia Table Settings
         animaliaTableView.setEditable(true);
         animaliaTableView.getColumns().addAll(animaliaItisSerialColumn, animaliaCommonNameColumn,
                 animaliaTaxonomicNameColumn, animaliaSubkingdomColumn, animaliaInfrakingdomColumn, animaliaSuperphylumColumn,
@@ -219,9 +219,9 @@ public class TaxonomyDictionary extends Application {
         animaliaStripColumn.prefWidthProperty().bind(root.widthProperty().divide(10.0));
         animaliaMorphColumn.prefWidthProperty().bind(root.widthProperty().divide(10.0));
         animaliaTableView.prefHeightProperty().bind(root.heightProperty());
-        animaliaTableView.setPlaceholder(new Label("No Search results Kingdom Animalia"));
+        animaliaTableView.setPlaceholder(new Label("No Search results Kingdom com.company.Animalia"));
 
-        // Plantae Column Factories
+        // com.company.Plantae Column Factories
         plantaeItisSerialColumn.setCellValueFactory(new PropertyValueFactory<Plantae, String>("itisSerialNumber"));
         plantaeCommonNameColumn.setCellValueFactory(new PropertyValueFactory<Plantae, String>("commonName"));
         plantaeTaxonomicNameColumn.setCellValueFactory(new PropertyValueFactory<Plantae, String>("taxonomicName"));
@@ -254,7 +254,7 @@ public class TaxonomyDictionary extends Application {
         plantaeSubformColumn.setCellValueFactory(new PropertyValueFactory<Plantae,String>("subform"));
 
 
-        // Plantae Table Settings
+        // com.company.Plantae Table Settings
         plantaeTableView.setEditable(true);
         plantaeTableView.getColumns().addAll(plantaeItisSerialColumn, plantaeCommonNameColumn,
                 plantaeTaxonomicNameColumn, plantaeSubkingdomColumn, plantaeInfrakingdomColumn,
@@ -306,7 +306,7 @@ public class TaxonomyDictionary extends Application {
         Label title = new Label("Taxonomic Dictionary");
         title.setFont(Font.font("Arial", FontWeight.BOLD, 20));
 
-        Label instructions = new Label("Enter a search term below, you can search by Scientific name, Common name, or ITIS serial number\n" +
+        Label instructions = new Label("Enter a search term below, you can search by Scientific name, Common name, or com.company.ITIS serial number\n" +
                 "Select the button for what you're searching for. All serach terms are case-sensitive.");
         instructions.setFont(Font.font("Arial", FontPosture.ITALIC, 12));
 
@@ -365,12 +365,12 @@ public class TaxonomyDictionary extends Application {
     {
         switch (kingdomComboBox.getValue().toString())
         {
-            case "Animalia":
+            case "com.company.Animalia":
                 root.getChildren().remove(5);
                 root.getChildren().add(animaliaTableView);
                 break;
 
-            case "Plantae":
+            case "com.company.Plantae":
                 root.getChildren().remove(5);
                 root.getChildren().add(plantaeTableView);
                 break;
