@@ -4,13 +4,9 @@ Class for managing the connection to the database and any queries
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.shape.Arc;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ITIS
 {
@@ -22,7 +18,7 @@ public class ITIS
         try
         {
             // Location of database, database in project root so only the name is needed
-            String url = "jdbc:sqlite:com.company.ITIS.sqlite";
+            String url = "jdbc:sqlite:ITIS.sqlite";
 
             // Creates the connection
             conn = DriverManager.getConnection(url);
@@ -184,7 +180,7 @@ public class ITIS
 
     // TODO Rewrite Query functions to use smaller specialized functions
     // Get info based on ITIS SN
-    public List<Map> itisSerialNumberSearch(String searchTerm) throws SQLException
+    public ArrayList<ArrayList<SearchResults>> itisSerialNumberSearch(String searchTerm) throws SQLException
     {
         // Queries
         final String QUERY_STRING;
@@ -192,16 +188,15 @@ public class ITIS
         // Results
         ResultSet queryResults = null;
         HashMap<Integer, SearchResults> masterResultsHashMap;
-        HashMap<Integer, Animalia> animaliaHashMap = new HashMap<Integer, Animalia>();
-        HashMap<Integer, Archaea> archaeaHashMap = new HashMap<Integer, Archaea>();
-        HashMap<Integer, Bacteria> bacteriaHashMap = new HashMap<Integer, Bacteria>();
-        HashMap<Integer, Chromista> chromistaHashMap = new HashMap<Integer, Chromista>();
-        HashMap<Integer, Fungi> fungiHashMap = new HashMap<Integer, Fungi>();
-        HashMap<Integer, Plantae> plantaeHashMap = new HashMap<Integer, Plantae>();
-        HashMap<Integer, Protozoa> protozoaHashMap = new HashMap<Integer, Protozoa>();
+        ArrayList<SearchResults> animaliaHashMap = new ArrayList<>();
+        ArrayList<SearchResults> archaeaHashMap = new ArrayList<>();
+        ArrayList<SearchResults> bacteriaHashMap = new ArrayList<>();
+        ArrayList<SearchResults> chromistaHashMap = new ArrayList<>();
+        ArrayList<SearchResults> fungiHashMap = new ArrayList<>();
+        ArrayList<SearchResults> plantaeHashMap = new ArrayList<>();
+        ArrayList<SearchResults> protozoaHashMap = new ArrayList<>();
         @SuppressWarnings("rawtypes")
-        List<Map> data = null;
-
+        ArrayList<ArrayList<SearchResults>> data = new ArrayList<>();
         // Add % to searchTerm
         searchTerm = "%" + searchTerm + "%";
 
@@ -220,6 +215,7 @@ public class ITIS
         queryResults = runQuery(QUERY_STRING, searchTerm);
 
         // Convert to SearchResult
+        // TODO prevent null pointer exception
         masterResultsHashMap = toSearchResult(queryResults);
 
 
@@ -227,22 +223,16 @@ public class ITIS
         for(int i=0; i<=masterResultsHashMap.size()-1; i++)
         {
             SearchResults currentResult = masterResultsHashMap.get(i);
-            switch(currentResult.kingdomName){
-                case "Animalia":
-                    Animalia currentResultAnimalia = currentResult.toAnimalia();
-                    animaliaHashMap.put(i, currentResultAnimalia);
-                    break;
-
-                case "Archaea":
-                    //Archaea currentResultArchaea = currentResult.toArchaea();
-                    break;
-
-                case "Bacteria":
-                    break;
-
-
+            System.out.println(currentResult.kingdomName);
+            switch(currentResult.kingdomName.toString()){
+                case "Animalia" -> {animaliaHashMap.add(currentResult);}
+                case "Archaea" -> {archaeaHashMap.add(currentResult);}
+                case "Bacteria" -> {bacteriaHashMap.add(currentResult);}
+                case "Chromista" -> {chromistaHashMap.add(currentResult);}
+                case "Fungi" -> {fungiHashMap.add(currentResult);}
+                case "Plantae" -> {plantaeHashMap.add(currentResult);}
+                case "Protoza" -> {protozoaHashMap.add(currentResult);}
             }
-
         }
 
         // Update data with all results

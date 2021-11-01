@@ -20,6 +20,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -337,7 +338,7 @@ public class TaxonomyDictionary extends Application {
 
         // Get search term
         String searchTerm = searchTermEntry.getText();
-        List<Map> searchResults = FXCollections.observableArrayList();
+        ArrayList<ArrayList<SearchResults>> searchResults = null;
         if (searchType.getSelectedToggle() == itisSerialNumberButton) {
             try {
                 searchResults = searcher.itisSerialNumberSearch(searchTerm);
@@ -363,10 +364,12 @@ public class TaxonomyDictionary extends Application {
         }
  */
         final ObservableList<Animalia> data = FXCollections.observableArrayList();
-        Map<Integer, Animalia> animaliaMap = searchResults.get(0);
-        for(int i=0; i<=animaliaMap.size()-1; i++){
-            Animalia currentResult = animaliaMap.get(i);
-            data.add(currentResult);
+        ArrayList<SearchResults> animaliaList = searchResults.get(0);
+        for(int i=0; i<=animaliaList.size()-1; i++){
+            System.out.println(i);
+            SearchResults currentResult = animaliaList.get(i);
+            Animalia currentResultAnimalia = currentResult.toAnimalia();
+            data.add(currentResultAnimalia);
         }
         animaliaTableView.setItems(data);
     }
